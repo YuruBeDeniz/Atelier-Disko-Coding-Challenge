@@ -38,7 +38,7 @@ const Home: NextPage = () => {
       }
     }) */
 
-    //console.log(requestBody)
+    console.log(requestBody)
     axios.post('/registrations', requestBody)
       .then(response => {
         console.log(response);
