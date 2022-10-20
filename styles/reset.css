@@ -1,0 +1,75 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  position: relative;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+blockquote,
+dl,
+dd,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+address,
+p,
+pre {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: unset;
+  font-weight: unset;
+}
+
+:where(ol),
+:where(ul) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:where(a) {
+  text-decoration: unset;
+  color: currentColor;
+}
+
+:where(address) {
+  font-style: inherit;
+}
+
+:where(img),
+:where(picture) {
+  align-self: center;
+}
+
+:where(button) {
+  margin: 0;
+  border: unset;
+  padding: 0;
+  width: unset;
+  text-align: unset;
+  overflow: visible;
+  cursor: pointer;
+  color: unset;
+  background: none;
+}
