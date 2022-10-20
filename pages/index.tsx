@@ -8,7 +8,7 @@ import typography from "../styles/typography.module.css";
 import cx from "classix";
 import React, { useState } from "react";
 import axios from 'axios';
-//import { PrismaClient } from '@prisma/client'
+//import { PrismaClient } from "@prisma/client";
 
 
 const Home: NextPage = () => {
@@ -16,25 +16,30 @@ const Home: NextPage = () => {
   const [ surName, setSurName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ message, setMessage ] = useState(''); 
-  const [ errorMessage, setErrorMessage] = useState('');
+  const [ title, setTitle] = useState('');
+  const [ errorMessage, setErrorMessage] = useState(['Doctor', 'Prof.', 'Prof.Dr.']);
+  
+ 
+  //const prisma = new PrismaClient();
 
-  //const prisma = new PrismaClient()
 
   const handleFirstName = e => setFirstName(e.target.value);
   const handleSurName = e => setSurName(e.target.value);
   const handleEmail = e => setEmail(e.target.value);
   const handleMessage = e => setMessage(e.target.value);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const requestBody = { firstName, surName, email, message };
-    /* const requestBody = prisma.create({
+
+    /* const user = prisma.user.create({
       data: {
         firstName, surName, email, message
       }
     }) */
-    console.log(requestBody)
-    axios.post('http://localhost:3000//api/registrations', requestBody)
+
+    //console.log(requestBody)
+    axios.post('/registrations', requestBody)
       .then(response => {
         console.log(response);
       })
@@ -55,9 +60,12 @@ const Home: NextPage = () => {
 
       <div>
         <form onSubmit={handleSubmit}>
-          <div /* className={registration.container} */>
-          <label>Firstname</label>
-               
+          <div className={registration.container}>
+           {/*   <select onChange={handleTitleChange}>
+              
+             </select> */} 
+
+             <label>Firstname</label>   
               <input
                 value={firstName}
                 onChange={handleFirstName}
@@ -66,6 +74,7 @@ const Home: NextPage = () => {
                 required
                  />
                 </div> 
+
               <label>Surname</label>
               <input
                 value={surName}
@@ -74,6 +83,7 @@ const Home: NextPage = () => {
                 placeholder="Fuchs"
                 required
                  />
+
               <label>Email</label>
               <input
                 value={email}
@@ -82,6 +92,7 @@ const Home: NextPage = () => {
                 placeholder="fuchs@hans.com"
                 required
                  />
+
               <label>Message</label>
               <textarea
                 value={message}
@@ -89,6 +100,7 @@ const Home: NextPage = () => {
                 type='text'
                 placeholder="Your message goes here"
               ></textarea>
+
               <button>Enter</button>
           
         </form>
