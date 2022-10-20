@@ -1,0 +1,43 @@
+.container {
+    position: absolute;
+    width: 1280px;
+    height: 962px;
+    left: 0px;
+    top: 0px;
+    background: #F1F1F1;
+}
+
+.requiredContainers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 25px;
+    gap: 134px;
+
+    position: absolute;
+    width: 550px;
+    height: 66px;
+    left: 80px;
+    top: 293px;
+
+    background: #FFFFFF;
+    border-radius: 34px;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 25px;
+    gap: 134px;
+    
+    position: absolute;
+    width: 550px;
+    height: 262px;
+    left: 80px;
+    top: 503px;
+    
+    background: #FFFFFF;
+    border-radius: 20px;
+}
+

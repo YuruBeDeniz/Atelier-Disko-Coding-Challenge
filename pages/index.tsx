@@ -3,10 +3,44 @@ import Head from "next/head";
 import Header from "../components/header/header";
 import styles from "./index.module.css";
 import layout from "../styles/layout.module.css";
+import registration from '../styles/registrationForm.module.css'
 import typography from "../styles/typography.module.css";
 import cx from "classix";
+import React, { useState } from "react";
+import axios from 'axios';
+//import { PrismaClient } from '@prisma/client'
+
 
 const Home: NextPage = () => {
+  const [ firstName, setFirstName ] = useState('');
+  const [ surName, setSurName ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ message, setMessage ] = useState(''); 
+  const [ errorMessage, setErrorMessage] = useState('');
+
+  //const prisma = new PrismaClient()
+
+  const handleFirstName = e => setFirstName(e.target.value);
+  const handleSurName = e => setSurName(e.target.value);
+  const handleEmail = e => setEmail(e.target.value);
+  const handleMessage = e => setMessage(e.target.value);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const requestBody = { firstName, surName, email, message };
+    /* const requestBody = prisma.create({
+      data: {
+        firstName, surName, email, message
+      }
+    }) */
+    console.log(requestBody)
+    axios.post('http://localhost:3000//api/registrations', requestBody)
+      .then(response => {
+        console.log(response);
+      })
+      .catch((err) => console.log(err)) 
+  }
+  
   return (
     <>
       <div>
@@ -19,7 +53,48 @@ const Home: NextPage = () => {
         <main className={styles.main}>
           <Header />
 
-          <div className={cx(layout.container, layout.grid)}>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <div /* className={registration.container} */>
+          <label>Firstname</label>
+               
+              <input
+                value={firstName}
+                onChange={handleFirstName}
+                type='text'
+                placeholder="Hans"
+                required
+                 />
+                </div> 
+              <label>Surname</label>
+              <input
+                value={surName}
+                onChange={handleSurName}
+                type='text'
+                placeholder="Fuchs"
+                required
+                 />
+              <label>Email</label>
+              <input
+                value={email}
+                onChange={handleEmail}
+                type='email'
+                placeholder="fuchs@hans.com"
+                required
+                 />
+              <label>Message</label>
+              <textarea
+                value={message}
+                onChange={handleMessage}
+                type='text'
+                placeholder="Your message goes here"
+              ></textarea>
+              <button>Enter</button>
+          
+        </form>
+      </div>    
+
+{/*           <div className={cx(layout.container, layout.grid)}>
             <div>This</div>
             <div>is</div>
             <div>a</div>
@@ -31,7 +106,7 @@ const Home: NextPage = () => {
             <div>and</div>
             <div>20px</div>
             <div>gutter</div>
-          </div>
+          </div> */}
         </main>
       </div>
     </>
